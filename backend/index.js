@@ -3,11 +3,10 @@ import express from "express";
 import mysql from "mysql";
 
 const app = express();
+
+app.use(express.json());
+
 // const mysql = require("mysql2");
-// GET
-app.get("/", (req, res) => {
-  res.json("HEllo this is the backend");
-});
 
 const q = "SELECT * FROM books";
 
@@ -38,6 +37,22 @@ pool.getConnection((err, connection) => {
 });
 // Pooling ends
 
+// GET
+app.get("/", (req, res) => {
+  res.json("HEllo this is the backend");
+});
+
+// CRUD operations below
+app.post("/books", (req, res) => {
+  const q = "INSERT INTO BOOKS (`title`, `desc`, `cover`) VALUES (?)";
+  const values = [req.body.title, req.body.desc, req.body.cover];
+
+  pool.query(q, [values], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Book has been created successfuly");
+  });
+});
+
 // Retrieve the books in our db
 app.get("/books", (req, res) => {
   const q = "SELECT * FROM books";
@@ -46,14 +61,6 @@ app.get("/books", (req, res) => {
     return res.json(data);
   });
 });
-
-// Connect SQL
-// const db = mysql.createConnection({
-//   host: "localhost",
-//   user: "user",
-//   password: "Patrickstar31!",
-//   database: "test",
-// });
 
 app.listen(8800, () => {
   console.log("Connected to backend!!");
