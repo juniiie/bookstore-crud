@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 const Update = () => {
   const [book, setBook] = useState({
     title: "",
+    author: "",
     desc: "",
     price: null,
     cover: "",
@@ -42,6 +43,12 @@ const Update = () => {
         type="text"
         placeholder="title"
         name="title"
+        onChange={handleChange}
+      ></input>
+      <input
+        type="text"
+        placeholder="author"
+        name="author"
         onChange={handleChange}
       ></input>
       <input

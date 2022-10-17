@@ -34,29 +34,35 @@ const Add = () => {
       <h1>Add new Book</h1>
       <input
         type="text"
-        placeholder="title"
+        placeholder="Title"
         name="title"
         onChange={handleChange}
       ></input>
       <input
         type="text"
-        placeholder="desc"
+        placeholder="Author"
+        name="author"
+        onChange={handleChange}
+      ></input>
+      <input
+        type="text"
+        placeholder="Description"
         name="desc"
         onChange={handleChange}
       ></input>
       <input
         type="number"
-        placeholder="price"
+        placeholder="$$$"
         name="price"
         onChange={handleChange}
       ></input>
       <input
         type="text"
-        placeholder="cover"
+        placeholder="Image Address Link"
         name="cover"
         onChange={handleChange}
       ></input>
-      <button className="formButton" onClick={handleClick}>
+      <button className="formButton button-59" onClick={handleClick}>
         Add Book
       </button>
     </div>

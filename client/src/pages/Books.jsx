@@ -33,25 +33,36 @@ const Books = () => {
 
   return (
     <div>
-      <h1>Book shop</h1>
+      <h1>My Book Shelf</h1>
       <div className="books">
         {books.map((book) => (
           <div className="book" key={book.id}>
-            {book.cover && <img src={book.cover} alt="" />}
-            <h2>{book.title}</h2>
-            <p>{book.desc}</p>
-            <span>{book.price}</span>
-            <button className="delete" onClick={() => handleDelete(book.id)}>
-              Delete
-            </button>
-            <button className="update">
-              <Link to={`/update/${book.id}`}>Update</Link>
-            </button>
+            <div className="bookCover">
+              {book.cover && <img src={book.cover} alt="" />}
+            </div>
+
+            {/* Book Info */}
+            <div className="booksFlexContainer">
+              <h2 className="bookTitle">{book.title}</h2>
+              <h3 className="bookAuthor">{book.author}</h3>
+              <p className="bookDesc">{book.desc}</p>
+              <span className="bookPrice">${book.price}</span>
+            </div>
+            <div className="delUpBtn">
+              <button className="delete" onClick={() => handleDelete(book.id)}>
+                DELETE
+              </button>
+              <button className="update">
+                <Link to={`/update/${book.id}`} className="updateLink">
+                  UPDATE
+                </Link>
+              </button>
+            </div>
           </div>
         ))}
       </div>
       <Link to="/add">
-        <button>Add new book</button>
+        <button className="button-59">Add new book</button>
       </Link>
     </div>
   );
